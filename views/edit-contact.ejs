@@ -1,0 +1,36 @@
+<h1><%= title %></h1>
+<h2>Form Edit Contact</h2>
+<% if (typeof errors != "undefined") { %>
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            <% errors.forEach(error => { %>
+                <li><%= error.msg %></li>
+            <% }) %>
+        </ul> 
+    </div>
+<% } %>
+<form method="post" action="/contact?_method=PUT">
+    <input type="hidden" name="id" value="<%= contact.id %>">
+    <input type="hidden" name="oldName" value="<%= (contact.oldName) ? contact.oldName : contact.name %>">
+    <div class="row">
+        <div class="col">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name" placeholder="name" name="name" required value="<%= contact.name %>">
+                <label for="name">Full Name</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="number" placeholder="number" name="number" required value="<%= contact.number %>">
+                <label for="number">Number Phone</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" placeholder="email" name="email" required value="<%= contact.email %>">
+                <label for="email">Email</label>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Contact</button>
+</form>
